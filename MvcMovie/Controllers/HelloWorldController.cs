@@ -5,6 +5,7 @@ namespace MvcMovie.Controllers;
 
 public class HelloWorldController : Controller
 {
+    Random random = new Random();
     //
     // GET: /HelloWorld/
     public IActionResult Index()
@@ -14,8 +15,11 @@ public class HelloWorldController : Controller
     //
     // GET: /HelloWorld/Welcome/
     // Requires using System.Text.Encodings.Web;
-    public string Welcome(string name, int ID = 1)
+    public IActionResult Welcome(string name, int ID = 1)
     {
-        return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+        // return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+        ViewData["Message"] = "Hello " + name;
+        ViewData["ID"] = ID;
+        return View();
     }
 }
